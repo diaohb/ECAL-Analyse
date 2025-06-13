@@ -28,11 +28,11 @@ int main(int argc, char *argv[]) {
     return 1;
 }
 void TreeReader::disp(string filename,string nentries){
-    SetRawTreeBranchAdress(filename,"MC_Truth");
-    TH3D *h_display1 = new TH3D("display1", "display1", 320, 0, 320*3, 5,-113.5,113.5,42,-111.3,111.3);
-    TH3D *h_display2 = new TH3D("display2", "display2", 320, 0, 320*3,42,-111.3,111.3, 5,-113.5,113.5);
-    TH3D *h_display1_noise = new TH3D("display1_noise", "display1_noise", 320, 0, 320*3, 5,-113.5,113.5,42,-111.3,111.3);
-    TH3D *h_display2_noise = new TH3D("display2_noise", "display2_noise", 320, 0, 320*3,42,-111.3,111.3, 5,-113.5,113.5);
+    SetRawTreeBranchAdress(filename,"Calib_Hit");
+    TH3D *h_display1 = new TH3D("display1", "display1", 320, 0, 320, 5,-113.5,113.5,42,-111.3,111.3);
+    TH3D *h_display2 = new TH3D("display2", "display2", 320, 0, 320,42,-111.3,111.3, 5,-113.5,113.5);
+    TH3D *h_display1_noise = new TH3D("display1_noise", "display1_noise", 320, 0, 320, 5,-113.5,113.5,42,-111.3,111.3);
+    TH3D *h_display2_noise = new TH3D("display2_noise", "display2_noise", 320, 0, 320,42,-111.3,111.3, 5,-113.5,113.5);
     TGraph2D *gr=new TGraph2D();
     gr->SetLineColor(kRed);
     // _noise->GetXaxis()->SetRangeUser(0, 800);

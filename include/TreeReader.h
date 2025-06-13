@@ -12,6 +12,9 @@ class TreeReader{
     void disp(string filename,string nentries);
     void hitmap(string filename,string outname);
     void hough(string filename,string outname);
+    void mip_layer(string filename,string pedestal,string outname);
+    void reconstruct(string filename,string pedestal,string outname);
+    void analyse(string filename,string outname);
 
     std::unique_ptr<ROOT::RDataFrame> df;
 

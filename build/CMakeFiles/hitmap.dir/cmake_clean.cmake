@@ -1,7 +1,6 @@
 file(REMOVE_RECURSE
-  "/mnt2/USTC/hbdiao/ECAL-Analyse/bin/hitmap"
-  "/mnt2/USTC/hbdiao/ECAL-Analyse/bin/hitmap.pdb"
-  "CMakeFiles/hitmap.dir/link.d"
+  "/home/diaohb/ECAL-Analyse/bin/hitmap"
+  "/home/diaohb/ECAL-Analyse/bin/hitmap.pdb"
   "CMakeFiles/hitmap.dir/src/TreeReader.cxx.o"
   "CMakeFiles/hitmap.dir/src/TreeReader.cxx.o.d"
   "CMakeFiles/hitmap.dir/src/hitmap.cxx.o"

@@ -31,8 +31,8 @@ void TreeReader::hough(string filename,string outname){
     TCanvas* c=new TCanvas();
     double pi=3.1415926;
     int steps=100;
-    TH2D* h_houghx=new TH2D("h_houghx","h_houghx",steps,-pi/15.,pi/15.,steps,-150,150);
-    TH2D* h_houghy=new TH2D("h_houghy","h_houghy",steps,-pi/15.,pi/15.,steps,-150,150);
+    TH2D* h_houghx=new TH2D("h_houghx","h_houghx",steps,-pi/100.,pi/100.,steps,-110,110);
+    TH2D* h_houghy=new TH2D("h_houghy","h_houghy",steps,-pi/100.,pi/100.,steps,-110,110);
     double *position;
     int layer=0,chip=0,channel=0;
     double x=0,y=0,z=0,theta=0,rho=0;
@@ -43,7 +43,7 @@ void TreeReader::hough(string filename,string outname){
         double rhox,rhoy;
         double thetax,thetay;
     };
-    (*df)
+    auto df1=(*df)
     .Define("hitno",[](vector<int> CellID,vector<int> HitTag){
         int hitno=0;
         for(int i=0;i<HitTag.size();i++){
@@ -64,9 +64,10 @@ void TreeReader::hough(string filename,string outname){
             hitlayer+=hitno[i];
         }
         return hitlayer;
-    },{"CellID","HitTag"})
-    // .Range(4,5,1)
-    .Define("track",[&](vector<int> CellID,vector<int> HitTag,vector<double> HG_Charge){
+    },{"CellID","HitTag"});
+    cout<<"hitno hitlayer done"<<endl;
+    // .Range(25,26,1)
+    auto df2=df1.Define("track",[&](vector<int> CellID,vector<int> HitTag,vector<double> HG_Charge){
         h_houghx->Reset();
         h_houghy->Reset();
         for (int i = 0; i < CellID.size(); i++) {
@@ -140,12 +141,15 @@ void TreeReader::hough(string filename,string outname){
         track.rhoy=rhoy;
         
         return track;
-    },{"CellID","HitTag","HG_Charge"})
+    },{"CellID","HitTag","HG_Charge"});
+    cout<<"track done"<<endl;
+    // cout<<"test "<<test<<endl;
+    // cout<<h_houghx->GetEntries()<<endl;
     // h_houghx->Draw("colz");
     // c->Update();
     // c->Modified();
     // cin>>outname;
-    .Define("distance_x",[](struct Track t){
+    auto df3=df2.Define("distance_x",[](struct Track t){
         return t.distance_x;
     },{"track"})
     .Define("distance_y",[](struct Track t){
@@ -153,8 +157,7 @@ void TreeReader::hough(string filename,string outname){
     },{"track"})
     .Define("rhox",[](struct Track t){
         return t.rhox;
-    },{"track"})
-    .Define("thetax",[](struct Track t){
+    },{"track"}).Define("thetax",[](struct Track t){
         return t.thetax;
     },{"track"})
     .Define("rhoy",[](struct Track t){
@@ -162,6 +165,8 @@ void TreeReader::hough(string filename,string outname){
     },{"track"})
     .Define("thetay",[](struct Track t){
         return t.thetay;
-    },{"track"})
-    .Snapshot<vector<int>,vector<int>,vector<double>,vector<double>,vector<double>,vector<double>,int,int,double,double,double,double>("Raw_Hit",TString(outname),{"CellID","HitTag","HG_Charge","LG_Charge","distance_x","distance_y","hitlayer","hitno","rhox","thetax","rhoy","thetay"});
+    },{"track"});
+    cout<<"fill done"<<endl;
+    df3.Snapshot<vector<int>,vector<int>,vector<double>,vector<double>,vector<double>,vector<double>,int,int,double,double,double,double>("Raw_Hit",TString(outname),{"CellID","HitTag","HG_Charge","LG_Charge","distance_x","distance_y","hitlayer","hitno","rhox","thetax","rhoy","thetay"});
+    cout<<"done"<<endl;
 }

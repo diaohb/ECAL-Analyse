@@ -1,7 +1,6 @@
 file(REMOVE_RECURSE
-  "/mnt2/USTC/hbdiao/ECAL-Analyse/bin/hough"
-  "/mnt2/USTC/hbdiao/ECAL-Analyse/bin/hough.pdb"
-  "CMakeFiles/hough.dir/link.d"
+  "/home/diaohb/ECAL-Analyse/bin/hough"
+  "/home/diaohb/ECAL-Analyse/bin/hough.pdb"
   "CMakeFiles/hough.dir/src/TreeReader.cxx.o"
   "CMakeFiles/hough.dir/src/TreeReader.cxx.o.d"
   "CMakeFiles/hough.dir/src/hough.cxx.o"

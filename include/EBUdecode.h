@@ -22,6 +22,11 @@ int findLayerID(string dataname)
      return LayerID;
 }
 
+////////////2025/6/6 at KEK
+int layer_order[20]={0,1,2,3,4,5,6,7,8,9,22,23,24,25,28,29,30,31,14,15};
+int layer_position[32]={0,1,2,3,4,5,6,7,8,9,31,31,31,31,18,19,31,31,31,31,31,31,10,11,12,13,31,31,14,15,16,17};
+/////////////////////////////
+
 // scintillator strips wrt. 6 SPIROC2E chips * 36 channels
 double *EBUdecode(int LayerIDs, int ChipIDs, int ChannelIDs)
 {
@@ -40,7 +45,7 @@ double *EBUdecode(int LayerIDs, int ChipIDs, int ChannelIDs)
 
     const double _xInterval = 5.3; // 300 um gap in width direction
     const double _yInterval = 45.4; // 400 um gap in length direction
-    const double _zInterval = 58; // 
+    const double _zInterval = 19.9; // 
     const int rowNu = 42;
     const int columnNu = 5;
     int _yID = ScintillatorIDs/rowNu;
@@ -50,6 +55,7 @@ double *EBUdecode(int LayerIDs, int ChipIDs, int ChannelIDs)
     double y0 = _yInterval*_yID - _yInterval*(columnNu-1)/2.; 
 
     // for prototype test
+    LayerIDs=layer_position[LayerIDs];
     if(LayerIDs%2==0) {
         _position[0] = -y0;
         _position[1] = -x0;

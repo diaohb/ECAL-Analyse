@@ -27,21 +27,34 @@ include_directories(src)
 include_directories(include)
 # include_directories(${YAML_CPP_INCLUDE_DIR})
 #message("hey ${YAML_CPP_INCLUDE_DIR}")
+# message(${ROOT_USE_FILE})
 include(${ROOT_USE_FILE})
+# message(STATUS "ROOT_USE_FILE: ${ROOT_USE_FILE}")
+
 
 #Add static librarys
 # add_library(HBase STATIC src/HBase.cxx)
 
 #add executable
 add_executable(disp src/disp.cxx src/TreeReader.cxx)
+add_executable(disp_hough src/disp_hough.cxx src/TreeReader.cxx)
 add_executable(dispe src/dispe.cxx src/TreeReader.cxx)
 add_executable(hitmap src/hitmap.cxx src/TreeReader.cxx)
 add_executable(hough src/hough.cxx src/TreeReader.cxx)
+add_executable(mip_layer src/mip_layer.cxx src/TreeReader.cxx)
+add_executable(mip_layer_hough src/mip_layer_hough.cxx src/TreeReader.cxx)
+add_executable(calib src/reconstruct.cxx src/TreeReader.cxx)
+add_executable(analyse src/analyse.cxx src/TreeReader.cxx)
 #link libraries
 target_link_libraries(disp ${ROOT_LIBRARIES})
+target_link_libraries(disp_hough ${ROOT_LIBRARIES})
 target_link_libraries(dispe ${ROOT_LIBRARIES})
 target_link_libraries(hitmap ${ROOT_LIBRARIES})
 target_link_libraries(hough ${ROOT_LIBRARIES})
+target_link_libraries(mip_layer ${ROOT_LIBRARIES})
+target_link_libraries(mip_layer_hough ${ROOT_LIBRARIES})
+target_link_libraries(calib ${ROOT_LIBRARIES})
+target_link_libraries(analyse ${ROOT_LIBRARIES})
 
 #Add scripts to make setup.sh to include hbuana into environment
 # execute_process(COMMAND cp ${CMAKE_CURRENT_SOURCE_DIR}/config/setup.sh ${PROJECT_BINARY_DIR})
